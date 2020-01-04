@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 public interface LeagueDisplayService {
 
     @GET("leagues/league/{leagueId}")
-    Single<LeagueResponse> searchBooks(@Path("leagueId") String leagueId, @Query("key") String apiKey);
+    Single<LeagueResponse> getLeagueById(@Path("leagueId") String leagueId, @Query("key") String apiKey);
 
 }
