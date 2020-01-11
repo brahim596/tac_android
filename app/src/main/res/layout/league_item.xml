@@ -18,11 +18,10 @@
 
         <ImageView
             android:id="@+id/league_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="175dp"
+            android:layout_height="90dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/league_name"
@@ -36,7 +35,7 @@
             app:layout_constraintRight_toLeftOf="@id/favorite_switch"
             app:layout_constraintTop_toTopOf="@id/league_icon"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="My book title" />
+            tools:text="League title" />
 
         <TextView
             android:id="@+id/league_country"
@@ -47,12 +46,13 @@
             app:layout_constraintLeft_toLeftOf="@id/league_name"
             app:layout_constraintRight_toLeftOf="@id/favorite_switch"
             app:layout_constraintTop_toBottomOf="@id/league_name"
-            tools:text="My author 1, my author 2" />
+            tools:text="League contry" />
 
-        <Switch
+        <ImageView
             android:id="@+id/favorite_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

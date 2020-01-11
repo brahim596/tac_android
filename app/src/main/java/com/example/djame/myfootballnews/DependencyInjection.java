@@ -40,6 +40,7 @@ public class DependencyInjection {
         if (retrofit == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(interceptor)
                   //  .addNetworkInterceptor(new StethoInterceptor())

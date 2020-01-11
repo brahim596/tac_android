@@ -1,6 +1,7 @@
 package com.example.djame.myfootballnews;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.Leagu
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueItemViewModel;
 
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity implements LeagueContractView {
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements LeagueContractVie
         leaguePresenter = new LeaguePresenter(DependencyInjection.getLeagueRepository());
         leaguePresenter.bindView(this);
         recyclerView.setAdapter(leagueAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         leaguePresenter.getLeagues();
 
     }

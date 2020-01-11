@@ -3,6 +3,7 @@ package com.example.djame.myfootballnews.presentation.leaguedisplay.adapter;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -31,6 +32,17 @@ public class LeagueViewHolder extends RecyclerView.ViewHolder {
         this.leagueItemViewModel = leagueItemViewModel;
         league_name.setText(leagueItemViewModel.getName());
         league_country.setText(leagueItemViewModel.getCountry());
-        Glide.with(this.view).load(this.leagueItemViewModel.getUrlLogo()).centerCrop().transition(DrawableTransitionOptions.withCrossFade(100)).circleCrop().into(league_icon);
+        Glide.with(this.view).load(this.leagueItemViewModel.getUrlLogo()).override(250,100).centerCrop().transition(DrawableTransitionOptions.withCrossFade(100)).into(league_icon);
+        setupListener();
     }
+
+    public void setupListener(){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(view.getContext(),leagueItemViewModel.getName(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

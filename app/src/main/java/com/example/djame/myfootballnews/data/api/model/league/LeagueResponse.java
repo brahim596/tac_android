@@ -6,24 +6,14 @@ import java.util.List;
 
 public class LeagueResponse {
 
-    int results;
+    @SerializedName("api")
+    LeagueBody leagueBody;
 
-    @SerializedName("items")
-    List<League> leagues;
-
-    public int getResults() {
-        return results;
+    public LeagueBody getLeagueBody() {
+        return leagueBody;
     }
 
-    public void setResults(int results) {
-        this.results = results;
-    }
-
-    public List<League> getLeagues() {
-        return leagues;
-    }
-
-    public void setLeagues(List<League> leagues) {
-        this.leagues = leagues;
+    public void setLeagueBody(LeagueBody leagueBody) {
+        this.leagueBody = leagueBody;
     }
 }

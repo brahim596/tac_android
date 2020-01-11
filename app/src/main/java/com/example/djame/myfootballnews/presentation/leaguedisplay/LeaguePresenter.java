@@ -1,5 +1,7 @@
 package com.example.djame.myfootballnews.presentation.leaguedisplay;
 
+import android.widget.Toast;
+
 import com.example.djame.myfootballnews.DependencyInjection;
 import com.example.djame.myfootballnews.data.api.model.league.League;
 import com.example.djame.myfootballnews.data.api.model.league.LeagueResponse;
@@ -40,6 +42,7 @@ public class LeaguePresenter {
                     public void onSuccess(LeagueResponse leagueResponse) {
                         leagueItemViewModels.add(mapResponseToViewModel(leagueResponse));
                         leagueContractView.displayLeagues(leagueItemViewModels);
+
                     }
 
                     @Override
@@ -47,7 +50,6 @@ public class LeaguePresenter {
                         System.out.println("error");
                     }
                 }));
-        this.leagueRepository.getLeagueById("1",DependencyInjection.API_KEY);
 
     }
 
@@ -56,8 +58,8 @@ public class LeaguePresenter {
     }
 
     private LeagueItemViewModel mapResponseToViewModel(LeagueResponse leagueResponse){
-        if(leagueResponse.getResults()==1){
-            League league = leagueResponse.getLeagues().get(0);
+        if(leagueResponse.getLeagueBody().getResults()==1){
+            League league = leagueResponse.getLeagueBody().getLeagues().get(0);
             return new LeagueItemViewModel(league.getLeague_id(),league.getName(),league.getCountry(),league.getLogo());
         }
         return null;
