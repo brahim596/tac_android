@@ -9,6 +9,22 @@ public class StandingBody {
 
     int results;
 
-    List<StandingsList> standings;
+    @SerializedName("standings")
+    List<List<Standing>> standings;
 
+    public int getResults() {
+        return results;
+    }
+
+    public void setResults(int results) {
+        this.results = results;
+    }
+
+    public List<List<Standing>> getStandings() {
+        return standings;
+    }
+
+    public void setStandings(List<List<Standing>> standings) {
+        this.standings = standings;
+    }
 }

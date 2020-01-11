@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:text="Pos"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/teamName"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Equipes"
+            android:textSize="12dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/gamesPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text=" J"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" G"
+            android:textColor="@color/colorAccent"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/draw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" N"
+            android:textColor="@color/colorAccent"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/loose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  P"
+            android:textColor="@color/colorAccent"
+            android:textSize="12dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/goalsFor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BP"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/goalsAgainst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BC"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/goalsDiff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+/-"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pts"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            tools:text="12" />
+
+        <!--<TextView
+            android:id="@+id/forme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            />-->
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/standing_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

@@ -52,16 +52,16 @@ public class LeaguePresenter {
                 }));
                 */
 
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueContractView.displayLeagues(leagueItemViewModels);
 
     }

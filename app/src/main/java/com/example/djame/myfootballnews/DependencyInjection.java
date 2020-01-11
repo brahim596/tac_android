@@ -1,9 +1,13 @@
 package com.example.djame.myfootballnews;
 
 import com.example.djame.myfootballnews.data.api.model.LeagueDisplayService;
+import com.example.djame.myfootballnews.data.api.model.StandingDisplayService;
 import com.example.djame.myfootballnews.data.repository.league.LeagueDataRepository;
 import com.example.djame.myfootballnews.data.repository.league.LeagueRepository;
 import com.example.djame.myfootballnews.data.repository.league.remote.LeagueRemoteDataSource;
+import com.example.djame.myfootballnews.data.repository.standing.StandingDataRepository;
+import com.example.djame.myfootballnews.data.repository.standing.StandingRepository;
+import com.example.djame.myfootballnews.data.repository.standing.remote.StandingRemoteDataSource;
 import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
@@ -16,6 +20,9 @@ public class DependencyInjection {
 
     private static LeagueRepository leagueRepository;
     private static LeagueDisplayService leagueDisplayService;
+
+    private static StandingRepository standingRepository;
+    private static StandingDisplayService standingDisplayService;
 
     private static Retrofit retrofit;
     private static Gson gson;
@@ -34,6 +41,20 @@ public class DependencyInjection {
                 leagueDisplayService = getRetrofit().create(LeagueDisplayService.class);
 
         return leagueDisplayService;
+    }
+
+    public static StandingRepository getStandingRepository(){
+        if(standingRepository==null)
+            standingRepository = new StandingDataRepository(new StandingRemoteDataSource(getStandingDisplayService()));
+
+        return standingRepository;
+    }
+
+    public static StandingDisplayService getStandingDisplayService(){
+        if(standingDisplayService==null)
+            standingDisplayService = getRetrofit().create(StandingDisplayService.class);
+
+        return standingDisplayService;
     }
 
     public static Retrofit getRetrofit() {

@@ -1,8 +1,10 @@
-package com.example.djame.myfootballnews.data.api.model.standings;
+package com.example.djame.myfootballnews.presentation.standingDisplay.adapter;
+
+import com.example.djame.myfootballnews.data.api.model.standings.Performence;
 
 import java.util.Date;
 
-public class Standing {
+public class StandingItemViewModel {
 
     int rank;
     String team_id;
@@ -16,7 +18,23 @@ public class Standing {
     int goalsDiff;
     int points;
     Date lastUpdate;
+    int nbGamesPlayed;
 
+    public StandingItemViewModel(int rank, String team_id, String teamName, String logo, String group, String forme, Performence all, Performence home, Performence away, int goalsDiff, int points, Date lastUpdate, int nbGamesPlayed) {
+        this.rank = rank;
+        this.team_id = team_id;
+        this.teamName = teamName;
+        this.logo = logo;
+        this.group = group;
+        this.forme = forme;
+        this.all = all;
+        this.home = home;
+        this.away = away;
+        this.goalsDiff = goalsDiff;
+        this.points = points;
+        this.lastUpdate = lastUpdate;
+        this.nbGamesPlayed = nbGamesPlayed;
+    }
 
     public int getRank() {
         return rank;
@@ -114,7 +132,11 @@ public class Standing {
         this.lastUpdate = lastUpdate;
     }
 
-    public int getNbGamesPlayed(){
-        return this.getAll().getDraw() + this.getAll().getLose() +this.getAll().getWin();
+    public int getNbGamesPlayed() {
+        return nbGamesPlayed;
+    }
+
+    public void setNbGamesPlayed(int nbGamesPlayed) {
+        this.nbGamesPlayed = nbGamesPlayed;
     }
 }

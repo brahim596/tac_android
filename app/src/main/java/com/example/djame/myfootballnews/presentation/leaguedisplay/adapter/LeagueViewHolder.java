@@ -1,5 +1,6 @@
 package com.example.djame.myfootballnews.presentation.leaguedisplay.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,8 +9,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.djame.myfootballnews.R;
+import com.example.djame.myfootballnews.presentation.standingDisplay.StandingActivity;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LeagueViewHolder extends RecyclerView.ViewHolder {
@@ -40,7 +41,10 @@ public class LeagueViewHolder extends RecyclerView.ViewHolder {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(),leagueItemViewModel.getName(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(),leagueItemViewModel.getName(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(view.getContext(), StandingActivity.class);
+                intent.putExtra("LEAGUE_ID", ""+leagueItemViewModel.getId());
+                view.getContext().startActivity(intent);
             }
         });
     }

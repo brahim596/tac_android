@@ -22,7 +22,6 @@ public class LeagueAdapter extends RecyclerView.Adapter<LeagueViewHolder> {
 
     public void bindViewModels(List<LeagueItemViewModel> leagueItemViewModels){
         this.leagueItemViewModels.clear();
-        LeagueItemViewModel leagueItemViewModel = new LeagueItemViewModel(1,"Test","Test","Test");
         this.leagueItemViewModels=leagueItemViewModels;
         this.notifyDataSetChanged();
     }
