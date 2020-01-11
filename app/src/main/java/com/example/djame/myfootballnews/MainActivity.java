@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements LeagueContractVie
         leaguePresenter = new LeaguePresenter(DependencyInjection.getLeagueRepository());
         leaguePresenter.bindView(this);
         recyclerView.setAdapter(leagueAdapter);
+        leaguePresenter.getLeagues();
 
     }
 

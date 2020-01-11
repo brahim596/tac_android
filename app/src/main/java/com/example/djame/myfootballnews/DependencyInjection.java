@@ -20,6 +20,8 @@ public class DependencyInjection {
     private static Retrofit retrofit;
     private static Gson gson;
 
+    public static String API_KEY="0b7833025emsh727af8e17b15433p1773dbjsndcee749125ca";
+
     public static LeagueRepository getLeagueRepository(){
         if(leagueRepository==null)
            leagueRepository = new LeagueDataRepository(new LeagueRemoteDataSource(getLeagueDisplayService()));

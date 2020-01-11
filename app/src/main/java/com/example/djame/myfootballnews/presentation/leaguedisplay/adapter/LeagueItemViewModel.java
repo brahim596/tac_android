@@ -2,16 +2,23 @@ package com.example.djame.myfootballnews.presentation.leaguedisplay.adapter;
 
 public class LeagueItemViewModel {
 
-    private String id;
+    private int id;
     private String name;
     private String country;
     private String urlLogo;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public LeagueItemViewModel(int id, String name, String country, String urlLogo) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
+        this.urlLogo = urlLogo;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
