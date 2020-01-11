@@ -33,7 +33,7 @@ public class LeaguePresenter {
 
 
     public void getLeagues(){
-        compositeDisposable.add(this.leagueRepository.getLeagueById("2",DependencyInjection.API_KEY)
+       /* compositeDisposable.add(this.leagueRepository.getLeagueById("2",DependencyInjection.API_KEY)
         .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<LeagueResponse>() {
@@ -50,6 +50,19 @@ public class LeaguePresenter {
                         System.out.println("error");
                     }
                 }));
+                */
+
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueItemViewModels.add(new LeagueItemViewModel(1,"Premier League","England","https://media.api-football.com/leagues/2.png"));
+        leagueContractView.displayLeagues(leagueItemViewModels);
 
     }
 
