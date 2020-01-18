@@ -15,14 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 public class LeagueAdapter extends RecyclerView.Adapter<LeagueViewHolder> {
 
     private List<LeagueItemViewModel> leagueItemViewModels;
+    private List<LeagueItemViewModel> backupLeagueItemViewModels;
 
     public LeagueAdapter() {
+
         this.leagueItemViewModels = new ArrayList<>();
+        this.backupLeagueItemViewModels = new ArrayList<>();
     }
 
     public void bindViewModels(List<LeagueItemViewModel> leaguesItems){
         this.leagueItemViewModels.clear();
+        this.backupLeagueItemViewModels.clear();
         this.leagueItemViewModels.addAll(leaguesItems);
+        this.backupLeagueItemViewModels.addAll(leaguesItems);
         this.notifyDataSetChanged();
     }
 
@@ -40,5 +45,15 @@ public class LeagueAdapter extends RecyclerView.Adapter<LeagueViewHolder> {
     @Override
     public int getItemCount() {
         return this.leagueItemViewModels.size();
+    }
+
+    public void filterByLeagueName(String leagueName){
+        this.leagueItemViewModels.clear();
+
+        //Impossible d'utiliser les stream ...
+        for(LeagueItemViewModel leagueItemViewModel: this.backupLeagueItemViewModels)
+            if(leagueItemViewModel.getName().toLowerCase().contains(leagueName.toLowerCase()))
+                this.leagueItemViewModels.add(leagueItemViewModel);
+        this.notifyDataSetChanged();
     }
 }

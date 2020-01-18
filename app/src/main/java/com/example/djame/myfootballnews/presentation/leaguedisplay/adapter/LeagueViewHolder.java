@@ -33,7 +33,7 @@ public class LeagueViewHolder extends RecyclerView.ViewHolder {
         this.leagueItemViewModel = leagueItemViewModel;
         league_name.setText(leagueItemViewModel.getName());
         league_country.setText(leagueItemViewModel.getCountry());
-        Glide.with(this.view).load(this.leagueItemViewModel.getUrlLogo()).override(250,100).centerCrop().transition(DrawableTransitionOptions.withCrossFade(100)).into(league_icon);
+        Glide.with(this.view).load(this.leagueItemViewModel.getUrlLogo()).fitCenter().transition(DrawableTransitionOptions.withCrossFade(100)).into(league_icon);
         setupListener();
     }
 

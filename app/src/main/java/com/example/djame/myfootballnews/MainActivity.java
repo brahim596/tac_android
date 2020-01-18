@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.djame.myfootballnews.data.api.model.league.League;
@@ -57,6 +58,5 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
     }
-
 
 }

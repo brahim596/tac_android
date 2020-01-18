@@ -6,8 +6,18 @@
     android:orientation="vertical"
     tools:context=".presentation.leaguedisplay.fragment.LeaguesFragment">
 
+    <EditText
+        android:id="@+id/searcheLeagueEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Recherche de league"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listLeagues"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

@@ -33,9 +33,9 @@ public class LeaguePresenter {
         leagueItemViewModels= new ArrayList<>();
         this.countryLeaguesToShow = new ArrayList<>();
         this.countryLeaguesToShow.add("england");
-        this.countryLeaguesToShow.add("france");
-        this.countryLeaguesToShow.add("italy");
-        this.countryLeaguesToShow.add("spain");
+        //this.countryLeaguesToShow.add("france");
+        //this.countryLeaguesToShow.add("italy");
+       // this.countryLeaguesToShow.add("spain");
     }
 
 
@@ -49,7 +49,7 @@ public class LeaguePresenter {
 
                         @Override
                         public void onSuccess(LeagueResponse leagueResponse) {
-                            leagueItemViewModels.add(mapResponseToViewModel(leagueResponse));
+                            leagueItemViewModels.addAll(mapResponseToViewModel(leagueResponse));
                             leagueContractView.displayLeagues(leagueItemViewModels);
 
                         }
@@ -79,11 +79,12 @@ public class LeaguePresenter {
         this.leagueContractView=leagueContractView;
     }
 
-    private LeagueItemViewModel mapResponseToViewModel(LeagueResponse leagueResponse){
+    private List<LeagueItemViewModel> mapResponseToViewModel(LeagueResponse leagueResponse){
+        List<LeagueItemViewModel> itemViewModels = new ArrayList<>();
         if(leagueResponse.getLeagueBody().getResults()>0){
-            League league = leagueResponse.getLeagueBody().getLeagues().get(0);
-            return new LeagueItemViewModel(league.getLeague_id(),league.getName(),league.getCountry(),league.getLogo());
+            for(League league: leagueResponse.getLeagueBody().getLeagues())
+                itemViewModels.add(new LeagueItemViewModel(league.getLeague_id(),league.getName(),league.getCountry(),league.getLogo()));
         }
-        return null;
+        return itemViewModels;
     }
 }
