@@ -7,4 +7,6 @@ import io.reactivex.Single;
 public interface LeagueRepository {
 
     Single<LeagueResponse> getLeagueById(String leagueId, String apiKey);
+
+    Single<LeagueResponse> getCurrentSeasonsFromLeaguesByCountry(String country, String apiKey);
 }

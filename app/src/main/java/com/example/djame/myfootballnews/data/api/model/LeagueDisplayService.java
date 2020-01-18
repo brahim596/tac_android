@@ -18,4 +18,11 @@ public interface LeagueDisplayService {
     })
     Single<LeagueResponse> getLeagueById(@Path("leagueId") String leagueId,@Query("apiKey") String apiKey);
 
+    @GET("leagues/current/{country}")
+    @Headers({
+            "x-rapidapi-host: api-football-v1.p.rapidapi.com",
+            "x-rapidapi-key: 0b7833025emsh727af8e17b15433p1773dbjsndcee749125ca"
+    })
+    Single<LeagueResponse> getCurrentSeasonsFromLeaguesByCountry(@Path("country") String country,@Query("apiKey") String apiKey);
+
 }

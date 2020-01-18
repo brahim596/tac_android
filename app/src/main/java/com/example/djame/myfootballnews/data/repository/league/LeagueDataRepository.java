@@ -18,4 +18,9 @@ public class LeagueDataRepository implements LeagueRepository {
     public Single<LeagueResponse> getLeagueById(String leagueId, String apiKey) {
         return this.leagueRemoteDataSource.getLeagueResponse(leagueId,apiKey);
     }
+
+    @Override
+    public Single<LeagueResponse> getCurrentSeasonsFromLeaguesByCountry(String country, String apiKey) {
+        return this.leagueRemoteDataSource.getCurrentSeasonsFromLeaguesByCountry(country,apiKey);
+    }
 }

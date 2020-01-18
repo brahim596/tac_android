@@ -16,4 +16,10 @@ public class LeagueRemoteDataSource {
     public Single<LeagueResponse> getLeagueResponse(String leagueId, String apiKey){
         return this.leagueDisplayService.getLeagueById(leagueId,apiKey);
     }
+
+    public Single<LeagueResponse> getCurrentSeasonsFromLeaguesByCountry(String country, String apiKey){
+        return this.leagueDisplayService.getCurrentSeasonsFromLeaguesByCountry(country,apiKey);
+    }
+
+
 }

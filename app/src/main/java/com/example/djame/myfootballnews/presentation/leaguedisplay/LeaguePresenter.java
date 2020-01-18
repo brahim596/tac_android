@@ -25,33 +25,43 @@ public class LeaguePresenter {
 
     private List<LeagueItemViewModel> leagueItemViewModels;
 
+    private List<String> countryLeaguesToShow;
+
     public LeaguePresenter(LeagueRepository leagueRepository) {
         this.leagueRepository = leagueRepository;
         this.compositeDisposable = new CompositeDisposable();
         leagueItemViewModels= new ArrayList<>();
+        this.countryLeaguesToShow = new ArrayList<>();
+        this.countryLeaguesToShow.add("england");
+        this.countryLeaguesToShow.add("france");
+        this.countryLeaguesToShow.add("italy");
+        this.countryLeaguesToShow.add("spain");
     }
 
 
     public void getLeagues(){
-       /* compositeDisposable.add(this.leagueRepository.getLeagueById("2",DependencyInjection.API_KEY)
-        .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<LeagueResponse>() {
 
-                    @Override
-                    public void onSuccess(LeagueResponse leagueResponse) {
-                        leagueItemViewModels.add(mapResponseToViewModel(leagueResponse));
-                        leagueContractView.displayLeagues(leagueItemViewModels);
+        for(String country: this.countryLeaguesToShow)
+            compositeDisposable.add(this.leagueRepository.getCurrentSeasonsFromLeaguesByCountry(country,DependencyInjection.API_KEY)
+            .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableSingleObserver<LeagueResponse>() {
 
-                    }
+                        @Override
+                        public void onSuccess(LeagueResponse leagueResponse) {
+                            leagueItemViewModels.add(mapResponseToViewModel(leagueResponse));
+                            leagueContractView.displayLeagues(leagueItemViewModels);
 
-                    @Override
-                    public void onError(Throwable e) {
-                        System.out.println("error");
-                    }
-                }));
-                */
+                        }
 
+                        @Override
+                        public void onError(Throwable e) {
+                            System.out.println("error");
+                        }
+                    }));
+
+
+        /*leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
@@ -61,8 +71,7 @@ public class LeaguePresenter {
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
         leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueItemViewModels.add(new LeagueItemViewModel(2,"Premier League","England","https://media.api-football.com/leagues/2.png"));
-        leagueContractView.displayLeagues(leagueItemViewModels);
+        leagueContractView.displayLeagues(leagueItemViewModels);*/
 
     }
 
@@ -71,7 +80,7 @@ public class LeaguePresenter {
     }
 
     private LeagueItemViewModel mapResponseToViewModel(LeagueResponse leagueResponse){
-        if(leagueResponse.getLeagueBody().getResults()==1){
+        if(leagueResponse.getLeagueBody().getResults()>0){
             League league = leagueResponse.getLeagueBody().getLeagues().get(0);
             return new LeagueItemViewModel(league.getLeague_id(),league.getName(),league.getCountry(),league.getLogo());
         }

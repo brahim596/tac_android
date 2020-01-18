@@ -20,9 +20,9 @@ public class LeagueAdapter extends RecyclerView.Adapter<LeagueViewHolder> {
         this.leagueItemViewModels = new ArrayList<>();
     }
 
-    public void bindViewModels(List<LeagueItemViewModel> leagueItemViewModels){
+    public void bindViewModels(List<LeagueItemViewModel> leaguesItems){
         this.leagueItemViewModels.clear();
-        this.leagueItemViewModels=leagueItemViewModels;
+        this.leagueItemViewModels.addAll(leaguesItems);
         this.notifyDataSetChanged();
     }
 
