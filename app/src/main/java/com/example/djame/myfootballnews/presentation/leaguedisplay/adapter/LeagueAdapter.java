@@ -39,7 +39,7 @@ public class LeagueAdapter extends RecyclerView.Adapter<LeagueViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull LeagueViewHolder holder, int position) {
-        holder.bindViewModel(this.leagueItemViewModels.get(position));
+        holder.bindViewModel(this.leagueItemViewModels.get(position),position);
     }
 
     @Override

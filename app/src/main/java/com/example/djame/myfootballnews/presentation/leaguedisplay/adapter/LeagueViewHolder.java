@@ -1,6 +1,7 @@
 package com.example.djame.myfootballnews.presentation.leaguedisplay.adapter;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class LeagueViewHolder extends RecyclerView.ViewHolder {
         league_icon = itemView.findViewById(R.id.league_icon);
     }
 
-    public void bindViewModel(LeagueItemViewModel leagueItemViewModel){
+    public void bindViewModel(LeagueItemViewModel leagueItemViewModel,int position){
         this.leagueItemViewModel = leagueItemViewModel;
         league_name.setText(leagueItemViewModel.getName());
         league_country.setText(leagueItemViewModel.getCountry());

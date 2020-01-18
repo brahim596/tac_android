@@ -40,7 +40,6 @@ public class LeaguesFragment extends Fragment implements LeagueContractView {
 
 
     public LeaguesFragment() {
-        // Required empty public constructor
     }
 
 
@@ -81,18 +80,6 @@ public class LeaguesFragment extends Fragment implements LeagueContractView {
         leaguePresenter.bindView(this);
         setUpRecyclerView();
         leaguePresenter.getLeagues();
-    }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        int currentOrientation = getResources().getConfiguration().orientation;
-        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(),2));
-        }
-        else {
-            recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        }
     }
 
     public void setUpRecyclerView(){
