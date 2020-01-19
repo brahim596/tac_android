@@ -33,9 +33,9 @@ public class LeaguePresenter {
         leagueItemViewModels= new ArrayList<>();
         this.countryLeaguesToShow = new ArrayList<>();
         this.countryLeaguesToShow.add("england");
-        //this.countryLeaguesToShow.add("france");
-        //this.countryLeaguesToShow.add("italy");
-       // this.countryLeaguesToShow.add("spain");
+        this.countryLeaguesToShow.add("france");
+        this.countryLeaguesToShow.add("italy");
+        this.countryLeaguesToShow.add("spain");
     }
 
 
