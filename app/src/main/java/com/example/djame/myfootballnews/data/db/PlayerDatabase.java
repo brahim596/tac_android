@@ -1,10 +1,9 @@
 package com.example.djame.myfootballnews.data.db;
 
 import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
-import com.example.djame.myfootballnews.data.api.model.player.Player;
-
-@Database(entities = {Player.class}, version = 1)
-public abstract class PlayerDatabase {
+@Database(entities = {PlayerEntity.class}, version = 1)
+public abstract class PlayerDatabase extends RoomDatabase {
     public abstract PlayerDao playerDao();
 }

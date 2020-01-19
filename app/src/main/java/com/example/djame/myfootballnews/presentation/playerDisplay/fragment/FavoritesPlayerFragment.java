@@ -24,28 +24,25 @@ import com.example.djame.myfootballnews.presentation.playerDisplay.adapter.Playe
 
 import java.util.List;
 
-public class PlayerFragment extends Fragment implements PlayerContractView {
+public class FavoritesPlayerFragment extends Fragment implements PlayerContractView {
 
     private PlayerAdapter playerAdapter;
     private PlayerPresenter playerPresenter;
     private RecyclerView recyclerView;
-    private EditText searchPlayer;
-    private Button valid_searchPlayer;
     private View currentView;
 
 
-    public PlayerFragment() {}
+    public FavoritesPlayerFragment() {}
 
-    public static PlayerFragment newInstance() {
-        return new PlayerFragment();
+    public static FavoritesPlayerFragment newInstance() {
+        return new FavoritesPlayerFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        currentView=inflater.inflate(R.layout.fragment_players, container, false);
-        searchPlayer=currentView.findViewById(R.id.search_player);
-        valid_searchPlayer=currentView.findViewById(R.id.valid_search_player);
+        currentView=inflater.inflate(R.layout.fragment_favorites_player, container, false);
+        if(playerPresenter!=null)playerPresenter.getFavoritesPlayer();
         return currentView;
     }
 
@@ -55,12 +52,12 @@ public class PlayerFragment extends Fragment implements PlayerContractView {
         playerPresenter=new PlayerPresenter(DependencyInjection.getPlayerRepository(),this);
         playerPresenter.bindView(this);
         setupRecyclerView();
-        setupSearchPlayerListener();
+        playerPresenter.getFavoritesPlayer();
     }
 
-    private void setupRecyclerView(){
+    public void setupRecyclerView(){
         playerAdapter=new PlayerAdapter(this);
-        recyclerView=currentView.findViewById(R.id.result_search_player);
+        recyclerView=currentView.findViewById(R.id.favorite_players);
         recyclerView.setAdapter(playerAdapter);
         int orientation = getResources().getConfiguration().orientation;
         if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -71,29 +68,18 @@ public class PlayerFragment extends Fragment implements PlayerContractView {
         }
     }
 
-    private void setupSearchPlayerListener(){
-        this.valid_searchPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String playerNameSearch = searchPlayer.getText().toString();
-                if(!playerNameSearch.equals(""))
-                    playerPresenter.searchPlayer(playerNameSearch);
-            }
-        });
-    }
-
     @Override
     public void displayPlayers(List<Player> playerList) {
-        this.playerAdapter.bindViewModels(playerList);
+
     }
 
     @Override
     public void displayFavoritesPlayers(List<Player> playerList) {
-
+        this.playerAdapter.bindViewModels(playerList);
     }
 
     @Override
     public void addFavorite(Player player) {
-        playerPresenter.addToFavorite(player);
+
     }
 }

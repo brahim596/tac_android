@@ -4,6 +4,8 @@ import com.example.djame.myfootballnews.DependencyInjection;
 import com.example.djame.myfootballnews.data.api.model.league.LeagueResponse;
 import com.example.djame.myfootballnews.data.api.model.player.Player;
 import com.example.djame.myfootballnews.data.api.model.player.PlayerResponse;
+import com.example.djame.myfootballnews.data.db.PlayerEntity;
+import com.example.djame.myfootballnews.data.repository.player.PlayerDataRepository;
 import com.example.djame.myfootballnews.data.repository.player.PlayerRepository;
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.ResourceSubscriber;
 
 public class PlayerPresenter {
 
@@ -44,6 +47,33 @@ public class PlayerPresenter {
                 }));
     }
 
+    public void addToFavorite(Player player){
+        playerRepository.insertPlayerLocalDatabase(player);
+    }
+
+    public void getFavoritesPlayer(){
+        this.compositeDisposable.add(this.playerRepository.loadFavoritedPlayer()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new ResourceSubscriber<List<PlayerEntity>>() {
+
+                    @Override
+                    public void onNext(List<PlayerEntity> playerEntityList) {
+                        playerContractView.displayFavoritesPlayers(mapListPlayerEntryToPlayer(playerEntityList));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //Do Nothing
+                    }
+                }));
+    }
+
     public void bindView(PlayerContractView playerContractView){
         this.playerContractView=playerContractView;
     }
@@ -63,6 +93,14 @@ public class PlayerPresenter {
             if(player.getWeight()!=null && !player.getWeight().equals(""))
                 filteredPlayer.add(player);
          return filteredPlayer;
+    }
+
+    private List<Player> mapListPlayerEntryToPlayer(List<PlayerEntity> playerEntityList){
+        List<Player> players = new ArrayList<>();
+        for(PlayerEntity playerEntity: playerEntityList)
+            players.add(PlayerDataRepository.mapPlayerEntityToPlayer(playerEntity));
+
+        return players;
     }
 
 

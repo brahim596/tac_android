@@ -7,4 +7,8 @@ import java.util.List;
 public interface PlayerContractView {
 
     void displayPlayers(List<Player> playerList);
+
+    void displayFavoritesPlayers(List<Player> playerList);
+
+    void addFavorite(Player player);
 }

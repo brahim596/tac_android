@@ -8,13 +8,14 @@ import com.example.djame.myfootballnews.data.api.model.player.Player;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 @Dao
 public interface PlayerDao {
 
     @Insert
-    public void insertPlayer(Player player);
+    public Completable insertPlayer(PlayerEntity playerEntity);
 
     @Query("SELECT * from PlayerEntity")
     Flowable<List<PlayerEntity>> loadFavorites();

@@ -3,6 +3,7 @@ package com.example.djame.myfootballnews.presentation.playerDisplay.adapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.djame.myfootballnews.R;
 import com.example.djame.myfootballnews.data.api.model.player.Player;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueItemViewModel;
+import com.example.djame.myfootballnews.presentation.playerDisplay.PlayerContractView;
+import com.like.LikeButton;
 
 public class PlayerViewHolder extends RecyclerView.ViewHolder{
 
@@ -31,10 +34,12 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder{
     private TextView player_height;
     private TextView player_weight;
     private TextView player_number;
+    private LikeButton likeButton;
+
+    private PlayerContractView playerContractView;
 
 
-
-    public PlayerViewHolder(@NonNull View itemView) {
+    public PlayerViewHolder(@NonNull View itemView,PlayerContractView playerContractView) {
         super(itemView);
         view=itemView;
         player_age=view.findViewById(R.id.player_age);
@@ -46,6 +51,9 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder{
         player_number=view.findViewById(R.id.player_number);
         player_nationality=view.findViewById(R.id.player_nationality);
         player_position=view.findViewById(R.id.player_position);
+        likeButton=view.findViewById(R.id.like_button);
+
+        this.playerContractView = playerContractView;
 
     }
 
@@ -60,6 +68,7 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder{
         player_firstname.setText(player.getFirstname());
         player_age.setText(player.getAge());
         setUpImageByPosition();
+        setupLikeButtonListenner();
     }
 
     private void setUpImageByPosition(){
@@ -70,6 +79,17 @@ public class PlayerViewHolder extends RecyclerView.ViewHolder{
                 case "Defender": Glide.with(this.view).load("https://cdn2.iconfinder.com/data/icons/rpg-fantasy-game-basic-ui/512/weapon_game_ui_fantasy_shield-512.png").fitCenter().override(400,400).transition(DrawableTransitionOptions.withCrossFade(100)).into(player_image);break;
                 case "Attacker": Glide.with(this.view).load("https://i.ya-webdesign.com/images/battle-clipart-sword-fight-22.vnd").fitCenter().override(400,400).transition(DrawableTransitionOptions.withCrossFade(100)).into(player_image);break;
             }
+    }
+
+    private void setupLikeButtonListenner(){
+        this.likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playerContractView.addFavorite(new Player(player.getPlayer_id(),player.getPlayer_name(),player.getFirstname(),player.getLastname(),player.getNumber(),player.getPosition(),player.getAge(),player.getNationality(),player.getHeight(),player.getWeight()));
+                likeButton.setLiked(true);
+                Toast.makeText(view.getContext(),"Testing",Toast.LENGTH_LONG);
+            }
+        });
     }
 
 

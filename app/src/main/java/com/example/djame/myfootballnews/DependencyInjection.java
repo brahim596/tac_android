@@ -1,13 +1,19 @@
 package com.example.djame.myfootballnews;
 
+import android.content.Context;
+
+import androidx.room.Room;
+
 import com.example.djame.myfootballnews.data.api.model.LeagueDisplayService;
 import com.example.djame.myfootballnews.data.api.model.PlayerDisplayService;
 import com.example.djame.myfootballnews.data.api.model.StandingDisplayService;
+import com.example.djame.myfootballnews.data.db.PlayerDatabase;
 import com.example.djame.myfootballnews.data.repository.league.LeagueDataRepository;
 import com.example.djame.myfootballnews.data.repository.league.LeagueRepository;
 import com.example.djame.myfootballnews.data.repository.league.remote.LeagueRemoteDataSource;
 import com.example.djame.myfootballnews.data.repository.player.PlayerDataRepository;
 import com.example.djame.myfootballnews.data.repository.player.PlayerRepository;
+import com.example.djame.myfootballnews.data.repository.player.locale.PlayerLocaleDataSource;
 import com.example.djame.myfootballnews.data.repository.player.remote.PlayerRemoteDataSource;
 import com.example.djame.myfootballnews.data.repository.standing.StandingDataRepository;
 import com.example.djame.myfootballnews.data.repository.standing.StandingRepository;
@@ -33,6 +39,8 @@ public class DependencyInjection {
 
     private static Retrofit retrofit;
     private static Gson gson;
+    private static PlayerDatabase playerDatabase;
+    private static Context applicationContext;
 
     public static String API_KEY="0b7833025emsh727af8e17b15433p1773dbjsndcee749125ca";
 
@@ -66,7 +74,7 @@ public class DependencyInjection {
 
     public static PlayerRepository getPlayerRepository(){
         if(playerRepository==null)
-            playerRepository = new PlayerDataRepository(new PlayerRemoteDataSource(getPlayerDisplayService()));
+            playerRepository = new PlayerDataRepository(new PlayerRemoteDataSource(getPlayerDisplayService()),new PlayerLocaleDataSource(getPlayerDatabase()));
 
         return playerRepository;
     }
@@ -96,6 +104,17 @@ public class DependencyInjection {
                     .build();
         }
         return retrofit;
+    }
+
+    public static void setContext(Context context) {
+        applicationContext = context;
+    }
+
+    public static PlayerDatabase getPlayerDatabase() {
+        if (playerDatabase == null) {
+            playerDatabase = Room.databaseBuilder(applicationContext, PlayerDatabase.class, "player-database").build();
+        }
+        return playerDatabase;
     }
 
     public static Gson getGson() {

@@ -201,8 +201,8 @@
                 <com.like.LikeButton
                     app:icon_type="heart"
                     app:icon_size="25dp"
-                    app:liked="true"
-                    android:id="@+id/star_button"
+                    app:liked="false"
+                    android:id="@+id/like_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

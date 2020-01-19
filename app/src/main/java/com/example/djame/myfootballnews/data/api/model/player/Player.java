@@ -13,6 +13,19 @@ public class Player {
     String height;
     String weight;
 
+    public Player(int player_id, String player_name, String firstname, String lastname, int number, String position, String age, String nationality, String height, String weight) {
+        this.player_id = player_id;
+        this.player_name = player_name;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.number = number;
+        this.position = position;
+        this.age = age;
+        this.nationality = nationality;
+        this.height = height;
+        this.weight = weight;
+    }
+
     public int getPlayer_id() {
         return player_id;
     }

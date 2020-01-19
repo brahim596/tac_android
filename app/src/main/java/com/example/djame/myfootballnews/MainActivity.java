@@ -18,6 +18,7 @@ import com.example.djame.myfootballnews.presentation.leaguedisplay.LeaguePresent
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueAdapter;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueItemViewModel;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.fragment.LeaguesFragment;
+import com.example.djame.myfootballnews.presentation.playerDisplay.fragment.FavoritesPlayerFragment;
 import com.example.djame.myfootballnews.presentation.playerDisplay.fragment.PlayerFragment;
 
 import java.util.List;
@@ -39,25 +40,34 @@ public class MainActivity extends AppCompatActivity  {
         viewPager=findViewById(R.id.viewPage);
         final LeaguesFragment leaguesFragment = LeaguesFragment.newInstance();
         final PlayerFragment playerFragment= PlayerFragment.newInstance();
+        final FavoritesPlayerFragment favoritesPlayerFragment= FavoritesPlayerFragment.newInstance();
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
-                return position==0 ? leaguesFragment : playerFragment;
+                switch (position){
+                    case 0:return  leaguesFragment;
+                    case 1:return  playerFragment;
+                    case 2: return  favoritesPlayerFragment;
+                    default: return leaguesFragment;
+                }
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
                 if (position == 0) {
                     return "Leagues";
+                }else if(position == 1){
+                    return "Players";
+                }else{
+                    return "Fav Players";
                 }
-                return "Players";
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
         });
     }
