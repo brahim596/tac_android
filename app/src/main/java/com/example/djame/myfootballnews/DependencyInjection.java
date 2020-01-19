@@ -1,10 +1,14 @@
 package com.example.djame.myfootballnews;
 
 import com.example.djame.myfootballnews.data.api.model.LeagueDisplayService;
+import com.example.djame.myfootballnews.data.api.model.PlayerDisplayService;
 import com.example.djame.myfootballnews.data.api.model.StandingDisplayService;
 import com.example.djame.myfootballnews.data.repository.league.LeagueDataRepository;
 import com.example.djame.myfootballnews.data.repository.league.LeagueRepository;
 import com.example.djame.myfootballnews.data.repository.league.remote.LeagueRemoteDataSource;
+import com.example.djame.myfootballnews.data.repository.player.PlayerDataRepository;
+import com.example.djame.myfootballnews.data.repository.player.PlayerRepository;
+import com.example.djame.myfootballnews.data.repository.player.remote.PlayerRemoteDataSource;
 import com.example.djame.myfootballnews.data.repository.standing.StandingDataRepository;
 import com.example.djame.myfootballnews.data.repository.standing.StandingRepository;
 import com.example.djame.myfootballnews.data.repository.standing.remote.StandingRemoteDataSource;
@@ -23,6 +27,9 @@ public class DependencyInjection {
 
     private static StandingRepository standingRepository;
     private static StandingDisplayService standingDisplayService;
+
+    private static PlayerRepository playerRepository;
+    private static PlayerDisplayService playerDisplayService;
 
     private static Retrofit retrofit;
     private static Gson gson;
@@ -55,6 +62,20 @@ public class DependencyInjection {
             standingDisplayService = getRetrofit().create(StandingDisplayService.class);
 
         return standingDisplayService;
+    }
+
+    public static PlayerRepository getPlayerRepository(){
+        if(playerRepository==null)
+            playerRepository = new PlayerDataRepository(new PlayerRemoteDataSource(getPlayerDisplayService()));
+
+        return playerRepository;
+    }
+
+    public static PlayerDisplayService getPlayerDisplayService(){
+        if(playerDisplayService==null)
+            playerDisplayService = getRetrofit().create(PlayerDisplayService.class);
+
+        return playerDisplayService;
     }
 
     public static Retrofit getRetrofit() {

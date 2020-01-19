@@ -9,7 +9,7 @@ public class PlayerBody {
 
     int results;
 
-    @SerializedName("leagues")
+    @SerializedName("players")
     List<Player> players;
 
     public int getResults() {

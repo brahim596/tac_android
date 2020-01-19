@@ -12,11 +12,13 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.djame.myfootballnews.data.api.model.league.League;
+import com.example.djame.myfootballnews.data.api.model.player.Player;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.LeagueContractView;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.LeaguePresenter;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueAdapter;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.adapter.LeagueItemViewModel;
 import com.example.djame.myfootballnews.presentation.leaguedisplay.fragment.LeaguesFragment;
+import com.example.djame.myfootballnews.presentation.playerDisplay.fragment.PlayerFragment;
 
 import java.util.List;
 
@@ -36,12 +38,13 @@ public class MainActivity extends AppCompatActivity  {
     private void setUpFragments(){
         viewPager=findViewById(R.id.viewPage);
         final LeaguesFragment leaguesFragment = LeaguesFragment.newInstance();
+        final PlayerFragment playerFragment= PlayerFragment.newInstance();
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
-                return position==0 ? leaguesFragment : leaguesFragment;
+                return position==0 ? leaguesFragment : playerFragment;
             }
 
             @Override
@@ -49,12 +52,12 @@ public class MainActivity extends AppCompatActivity  {
                 if (position == 0) {
                     return "Leagues";
                 }
-                return "test 2";
+                return "Players";
             }
 
             @Override
             public int getCount() {
-                return 1;
+                return 2;
             }
         });
     }
